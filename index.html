@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pendaftaran Mahasiswa</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pendaftaran Mahasiswa</h1>
+
+      <form id="registrationForm">
+        <div class="form-group">
+          <label for="name">Nama:</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Telepon:</label>
+          <input type="tel" id="phone" name="phone" required />
+        </div>
+
+        <button type="submit" class="btn">Daftar</button>
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+      var images = [
+        'https://i.pinimg.com/originals/62/0d/18/620d18c9ebe7ac8dd378da4ea37bebab.jpg',
+        'https://pekanbaru.ut.ac.id/wp-content/uploads/2022/06/pendaftaran-background2022.jpg',
+        'https://png.pngtree.com/thumb_back/fw800/background/20190220/ourmid/pngtree-summer-price-training-fiery-enrollment-image_8765.jpg',
+      ];
+
+      var currentIndex = 0;
+
+      function changeBackground() {
+        document.body.style.backgroundImage =
+          'url(' + images[currentIndex] + ')';
+        currentIndex = (currentIndex + 1) % images.length;
+      }
+
+      // Change background every 3 seconds
+      setInterval(changeBackground, 3000);
+
+      document
+        .getElementById('registrationForm')
+        .addEventListener('submit', function (event) {
+          event.preventDefault(); // Prevent form submission
+
+          // Get form values
+          var name = document.getElementById('name').value;
+          var email = document.getElementById('email').value;
+          var phone = document.getElementById('phone').value;
+
+          // Display success notification
+          Swal.fire({
+            icon: 'success',
+            title: 'Pendaftaran berhasil!',
+            text: 'Terima kasih atas pendaftarannya, ' + name + '!',
+            showConfirmButton: false,
+            timer: 3000, // Hide after 3 seconds
+          });
+
+          // Clear form fields after successful registration
+          document.getElementById('registrationForm').reset();
+        });
+    </script>
+  </body>
+</html>
